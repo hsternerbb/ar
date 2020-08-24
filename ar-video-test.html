@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>AR Test</title>
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    <!-- import the webpage's javascript file -->
+    <!-- AR.js by @jerome_etienne - github: https://github.com/jeromeetienne/ar.js - info: https://medium.com/arjs/augmented-reality-in-10-lines-of-html-4e193ea9fdbf -->
+<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
+  <script>
+AFRAME.registerComponent('vidhandler', {
+  // ...
+  init: function () {
+    // Set up initial state and variables.
+    this.toggle = false;
+    this.vid = document.querySelector("#vid")
+    this.vid.pause();
+  },
+  tick:function(){
+
+if(this.el.object3D.visible == true){
+  if(!this.toggle){
+     this.toggle = true;
+     this.vid.play();
+    }
+  }else{
+  this.toggle = false;
+    this.vid.pause();
+    }
+  }
+});
+
+  </script>
+  </head>
+<body> 
+
+  <style>
+    margin : 0px; overflow: hidden;
+  </style>
+
+
+  
+  
+  <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+     
+      <!-- Load video that is hosted on another server. See 'src' attribute: -->
+
+    <a-marker preset="hiro" vidhandler smoothtolerance="0.01" smooth="true">
+        <a-video scale="1 1 1" position="0 0 0" src="/video/york_gif.webm" width="0.53" height="1" rotation="-90 0 0" play="true" loop="true"></a-video>
+    </a-marker> 
+    
+    <a-marker type="pattern" url="/assets/pattern-stelldichein_PATTERN.patt" vidhandler smoothtolerance="0.01" smooth="true">
+        <a-video position="0 0 0" src="/video/york_gif2.mp4" width="0.53" height="1" rotation="-20 0 0" play="true" loop="true"></a-video> 
+    </a-marker> 
+    
+    <a-entity camera></a-entity>
+  
+  </a-scene>  
+
+</body>
+
+  </html>
+
+
+
+
+
+     <!--
+
+<a-marker preset="hiro" vidhandler smoothtolerance="0.01" smooth="true">
+ <a-marker type="pattern" url="https://cdn.glitch.com/58b1937c-2940-4950-915c-2fb3b0bda452%2Fpattern-stelldichein_PATTERN.patt?v=1597845763203" vidhandler smoothtolerance="0.01" smooth="true">
+https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4
+patternRatio: 0.75; 
+-->
+
+
+
+

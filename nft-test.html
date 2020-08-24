@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>AR Test</title>
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    <!-- import the webpage's javascript file -->
+    <!-- AR.js by @jerome_etienne - github: https://github.com/jeromeetienne/ar.js - info: https://medium.com/arjs/augmented-reality-in-10-lines-of-html-4e193ea9fdbf -->
+<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+<!--<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>-->
+    
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+
+   
+    <script>
+      
+AFRAME.registerComponent('vidhandler', {
+  init: function () {
+    this.toggle = false;
+    document.querySelector("#vid").pause(); //reference to the video
+  },
+  tick:function(){  
+   if(document.querySelector("a-nft").object3D.visible == true){
+     if(!this.toggle){
+       this.toggle = true;
+       document.querySelector("#vid").play();
+     }
+   }else{
+     this.toggle = false;
+     document.querySelector("#vid").pause();
+   }
+  }
+});
+
+  </script>
+    
+  </head>
+
+<body> 
+
+  <style>
+    margin : 0px; overflow: hidden;
+    
+  </style>
+
+
+  
+  
+  <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded arjs="trackingMethod: best; debugUIEnabled: false;">
+     
+      <!-- Load video that is hosted on another server. See 'src' attribute: -->
+<a-assets>
+      <!-- Load video that is hosted on another server. See 'src' attribute: -->
+      <video  id="vid" position="0 0 0" src="https://cdn.glitch.com/58b1937c-2940-4950-915c-2fb3b0bda452%2Fteaser.mp4?v=1598015993031" crossorigin></video>
+    </a-assets>
+   
+    
+   <!-- <a-marker type="pattern" url="https://cdn.glitch.com/58b1937c-2940-4950-915c-2fb3b0bda452%2Fpattern-qr-test.patt?v=1598014806620"  smoothtolerance="0.01" smooth="true"  vidhandler> -->
+      <a-nft
+      type="nft"
+      url="https://ar-test.h2local.de/assets/nft/stelldichein_LOGO_RGB"
+      smooth="true"
+      smoothcount="10"
+      smoothtolerance=".01"
+      smooththreshold="5"
+      vidhandler
+    >
+        
+      <a-video  src="#vid" rotation="-90 0 0" width="0.8" height="1" loop="true" ></a-video> 
+    </a-nft> 
+    
+    <a-entity camera></a-entity>
+  
+  </a-scene>  
+
+</body>
+
+  </html>
+
+
+
+
+
+     <!--
+
+<a-marker preset="hiro" vidhandler smoothtolerance="0.01" smooth="true">
+ <a-marker type="pattern" url="https://cdn.glitch.com/58b1937c-2940-4950-915c-2fb3b0bda452%2Fpattern-stelldichein_PATTERN.patt?v=1597845763203" vidhandler smoothtolerance="0.01" smooth="true">
+https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4
+patternRatio: 0.75; 
+
+<a-marker preset="hiro" vidhandler smoothtolerance="0.01" smooth="true">
+        <a-video scale="1 1 1" position="0 0 0" src="https://cdn.glitch.com/58b1937c-2940-4950-915c-2fb3b0bda452%2Fyork_gif.webm?v=1597827343033" width="0.53" height="1" rotation="-90 0 0" play="true" loop="true"></a-video>
+    </a-marker> 
+    
+    <a-marker type="pattern" url="https://cdn.glitch.com/58b1937c-2940-4950-915c-2fb3b0bda452%2Fpattern-stelldichein_PATTERN.patt?v=1597848784309"  smoothtolerance="0.01" smooth="true">
+        <a-video position="0 0 0" src="https://cdn.glitch.com/58b1937c-2940-4950-915c-2fb3b0bda452%2Fyork_gif2.mp4?v=1598002250650" width="0.53" height="1" rotation="-90 0 0" play="true" loop="true"></a-video> 
+    </a-marker> 
+
+<script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+<a-box position='100 0.5 -180' material="shader:gif;src:url(https://media.tenor.com/images/412b1aa9149d98d561df62db221e0789/tenor.gif);opacity:.5">
+-->
+
+
+
+
